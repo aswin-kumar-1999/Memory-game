@@ -10,7 +10,9 @@ const COLORS = [
   "blue",
   "green",
   "orange",
-  "purple"
+  "purple",
+  "black",
+  "black"
 ];
 
 // here is a helper function to shuffle an array
@@ -70,7 +72,7 @@ function handleCardClick(event) {
     const eventClass = clkCards[clkCards.length - 1].getAttribute("class");
     document.getElementById(eventId).style.backgroundColor = eventClass;
     console.log(eventId)
-    event.target.classList.toggle("flip");
+    event.target.classList.add("flip");
     // event.target.classList.remove("flipBack")
   }
 
@@ -89,17 +91,17 @@ function handleCardClick(event) {
 
       if (card1 === card2) {
         console.log("match", count);
-        clkCards[0].removeEventListener("click",handleCardClick);
-        clkCards[1].removeEventListener("click",handleCardClick)
+        clkCards[0].removeEventListener("click", handleCardClick);
+        clkCards[1].removeEventListener("click", handleCardClick)
         clkCards = [];
       }
       else {
         setTimeout(() => {
           clkCards[0].classList.toggle("flip");
           clkCards[1].classList.toggle("flip");
-         
+    
           let eventId = clkCards[0].getAttribute("id");
-          document.getElementById(eventId).style.backgroundColor= "white";
+          document.getElementById(eventId).style.backgroundColor = "white";
           console.log(clkCards)
           eventId = clkCards[1].getAttribute("id");
           document.getElementById(eventId).style.backgroundColor = "white";
