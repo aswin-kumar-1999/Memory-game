@@ -63,30 +63,55 @@ let count = 0;
 function handleCardClick(event) {
 
   clkCards.push(event.target);
-  // console.log(clkCards);
+
   const numOfCards = clkCards.length;
-  // console.log(clkCards);
+  if (clkCards.length <= 2) {
+    const eventId = clkCards[clkCards.length - 1].getAttribute("id");
+    const eventClass = clkCards[clkCards.length - 1].getAttribute("class");
+    document.getElementById(eventId).style.backgroundColor = eventClass;
+    console.log(eventId)
+    event.target.classList.toggle("flip");
+    // event.target.classList.remove("flipBack")
+  }
 
   if (clkCards.length == 2) {
+    console.log(clkCards);
+
     const isSameCard = clkCards[0].getAttribute("id") === clkCards[1].getAttribute("id");
-    
-    // console.log("samecard:",isSameCard);
 
     if (!isSameCard) {
-      // console.log(clkCards);
+
       const card1 = clkCards[0].getAttribute("class");
       const card2 = clkCards[1].getAttribute("class");
-      // console.log(count++);
       count++;
+
       console.log(card1, card2);
-      setTimeout(() => {
+
+      if (card1 === card2) {
+        console.log("match", count);
+        clkCards[0].removeEventListener("click",handleCardClick);
+        clkCards[1].removeEventListener("click",handleCardClick)
         clkCards = [];
-        console.log("done")
-      }, 1000)
+      }
+      else {
+        setTimeout(() => {
+          clkCards[0].classList.toggle("flip");
+          clkCards[1].classList.toggle("flip");
+         
+          let eventId = clkCards[0].getAttribute("id");
+          document.getElementById(eventId).style.backgroundColor= "white";
+          console.log(clkCards)
+          eventId = clkCards[1].getAttribute("id");
+          document.getElementById(eventId).style.backgroundColor = "white";
+
+          clkCards = [];
+          console.log("done")
+        }, 1000)
+      }
     }
     else {
       clkCards.shift(1);
-      // console.log(clkCards);
+      console.log(clkCards);
     }
 
   }
