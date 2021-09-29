@@ -1,4 +1,4 @@
-const gameContainer = document.getElementsById("game");
+const gameContainer = document.getElementById("game");
 
 const COLORS = [
   "red",
@@ -42,13 +42,13 @@ let shuffledColors = shuffle(COLORS);
 // it creates a new div and gives it a class with the value of the color
 // it also adds an event listener for a click for each card
 function createDivsForColors(colorArray) {
-  for (let color of colorArray) {
+  for (let color in colorArray) {
     // create a new div
     const newDiv = document.createElement("div");
 
     // give it a class attribute for the value we are looping over
-    newDiv.classList.add(color);
-
+    newDiv.classList.add(colorArray[color]);
+    newDiv.setAttribute("id", color);
     // call a function handleCardClick when a div is clicked on
     newDiv.addEventListener("click", handleCardClick);
 
@@ -58,9 +58,39 @@ function createDivsForColors(colorArray) {
 }
 
 // TODO: Implement this function!
+let clkCards = [];
+let count = 0;
 function handleCardClick(event) {
-  // you can use event.target to see which element was clicked
-  console.log("you clicked",event.target);
+
+  clkCards.push(event.target);
+  // console.log(clkCards);
+  const numOfCards = clkCards.length;
+  // console.log(clkCards);
+
+  if (clkCards.length == 2) {
+    const isSameCard = clkCards[0].getAttribute("id") === clkCards[1].getAttribute("id");
+    
+    // console.log("samecard:",isSameCard);
+
+    if (!isSameCard) {
+      // console.log(clkCards);
+      const card1 = clkCards[0].getAttribute("class");
+      const card2 = clkCards[1].getAttribute("class");
+      // console.log(count++);
+      count++;
+      console.log(card1, card2);
+      setTimeout(() => {
+        clkCards = [];
+        console.log("done")
+      }, 1000)
+    }
+    else {
+      clkCards.shift(1);
+      // console.log(clkCards);
+    }
+
+  }
+
 }
 
 // when the DOM loads
