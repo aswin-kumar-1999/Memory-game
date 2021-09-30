@@ -1,13 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>Memory game
-    <meta charset="UTF-8" />
-    <title>Memory Game!</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <h1>Memory Game!</h1>
-    <div id="game">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Memory Game!</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Stick+No+Bills:wght@400;600&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+  <div class="backDrop">
+    <div>
+      <h1>Welcome to memory game</h1>
+      <div class="finalScore"></div>
+      <div>
+        <button id="main-btn" onclick="startGame()">START</button>
+      </div>
+    </div>
+  </div>
+  <!-- <img id="bg" src="./bg.jpg"> -->
+  <h1>Memory Game!</h1>
+  <div class="scoreCard">
+    <div class="score"></div>
+    <div class="level"></div>
+  </div>
+  <div id="game">
     <script src="script.js"></script>
-  </body>
+</body>
+
 </html>
