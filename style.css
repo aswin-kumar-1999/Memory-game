@@ -20,10 +20,10 @@ body {
 }
 
 #game div {
-  border: red solid 5px;
+  border: 4px solid;
+  border-image: linear-gradient(to right, hsl(0, 100%, 50%), hsl(192, 100%, 50%)) 1;
   width: 150px;
   height: 200px;
-  
   margin: 10px;
   border-radius: 1rem;
   display: block;
@@ -122,6 +122,6 @@ option{
 @media screen and (max-width:768px) {
   #game div {
     width: 15vw;
-    height: 15vw;
+    height: 18vw;
   }
 }
