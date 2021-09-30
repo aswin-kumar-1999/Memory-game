@@ -2,10 +2,11 @@
   margin: 0;
   padding: 0;
   font-family: 'Stick No Bills', sans-serif;
-  text-shadow: 0 10px 1.5rem rgb(214, 48, 19) ;
+  text-shadow: 0 10px 1.5rem rgb(214, 48, 19);
   color: white;
 }
-body{
+
+body {
   background-image: url('./honey.jpg');
 }
 
@@ -14,7 +15,7 @@ body{
   flex-wrap: wrap;
   justify-content: center;
   position: relative;
-  left:-1500px;
+  left: -1500px;
   transition: 500ms;
 }
 
@@ -27,11 +28,13 @@ body{
   display: inline-block;
   transition: 300ms ease-in-out;
 }
+
 /* #game>div{
   background-image: url('./gifs/div.gif');
   background-size: cover;
   background-position-x:-6rem; 
 } */
+
 h1 {
   text-align: center;
   padding: 3rem 0;
@@ -51,45 +54,72 @@ h1 {
   justify-content: center;
   align-items: center;
   font-family: 'Stick No Bills', sans-serif;
- }
+}
 
 .backDrop>div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   background-image: linear-gradient(to bottom right, rgba(221, 0, 255, 1), rgba(136, 0, 255, 1), rgba(129, 66, 255, 1));
   color: white;
   font-weight: 600;
-  padding: 0 2rem;
+  padding: 1rem 2rem;
   border-radius: 1rem;
   height: 30vh;
-  text-shadow: 0 10px 20px rgb(255, 0, 0) ;
+  text-shadow: 0 10px 20px rgb(255, 0, 0);
 }
 
 .backDrop>div>div {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
 }
 
 button {
   cursor: pointer;
   border: none;
-  color: black;
-  padding: .5rem 1rem;
+  background-color: #04AA6D;
+  color: white;
+  font-size: 16px;
+  padding: 10px 30px;
   border-radius: 20px;
 }
 
 button:hover {
   box-shadow: 0 0 50px rgb(247, 245, 245);
-  color: white;
+  color: rgb(2, 0, 0);
   font-weight: 700;
 }
 
-.scoreCard{
-     margin: 2rem 3rem;
-     animation-name: bounce;
-     animation-duration: 4s;
+.scoreCard {
+  margin: 2rem 3rem;
+  animation-name: bounce;
+  animation-duration: 4s;
 }
 
+.level>select{
+  cursor: pointer;
+  border: none;
+  background-color: #04AA6D;
+  color: white;
+  font-size: 16px;
+  padding: .5rem 2rem;
+  border-radius: 20px;
+  margin-bottom: 2rem;
+}
+
+option{
+  background-color: #04AA6D;
+}
 @keyframes bounce {
-  0%, 20%, 50%, 80%, 100% {transform: translateY(0);} 
-  40% {transform: translateY(-300px);} 
-  60% {transform: translateY(-15px);} 
-} 
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-300px);
+  }
+  60% {
+    transform: translateY(-15px);
+  }
+}
+

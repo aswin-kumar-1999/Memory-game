@@ -6,17 +6,13 @@ let score = 0;
 
 const COLORS = [
   "red",
-  "blue",
   "green",
   "orange",
   "purple",
-  "red",
   "blue",
-  "green",
-  "orange",
-  "purple",
   "black",
-  "black"
+  "white",
+  "grey"
 ];
 
 // here is a helper function to shuffle an array
@@ -42,7 +38,7 @@ function shuffle(array) {
   return array;
 }
 
-let shuffledColors = shuffle(COLORS);
+
 
 // this function loops over the array of colors
 // it creates a new div and gives it a class with the value of the color
@@ -115,10 +111,10 @@ function handleCardClick(event) {
           clkCards[1].classList.toggle("flip");
 
           let eventId = clkCards[0].getAttribute("id");
-          document.getElementById(eventId).style.backgroundColor = "white";
+          document.getElementById(eventId).style.backgroundColor = "transparent";
           console.log(clkCards)
           eventId = clkCards[1].getAttribute("id");
-          document.getElementById(eventId).style.backgroundColor = "white";
+          document.getElementById(eventId).style.backgroundColor = "transparent";
           console.log(clkCards)
           clkCards = [];
           console.log("done")
@@ -140,11 +136,16 @@ function handleCardClick(event) {
 }
 
 function startGame() {
+  var level = document.getElementsByTagName('select')[0].value;
+  console.log(level)
   document.querySelector(".backDrop").style.display = "none";
   const container = document.querySelector('#game');
   removeAllChildNodes(container);
   moves = 0;
   score = 0;
+  const cards = selectLevel(level);
+  console.log(cards);
+  let shuffledColors = shuffle(cards);
   createDivsForColors(shuffledColors);
   document.querySelector("#game").style.left = "0";
 }
@@ -164,4 +165,26 @@ function checkScore(moves) {
   document.querySelector("h1").innerText = "Congratulations";
   document.querySelector(".finalScore").innerHTML = `Best score: ${localStorage.getItem("score")}<br/>Your score: ${moves}`;
   document.querySelector("#main-btn").innerText = "RESET";
+}
+
+function selectLevel(level) {
+  let cards;
+  console.log(level)
+  if (level == 1) {
+    let colors = COLORS.slice(0, 4);
+    console.log(colors)
+    cards = colors.concat(colors);
+  }
+  else if (level == 2) {
+    let colors = COLORS.slice(0, 6);
+    cards = colors.concat(colors);
+
+  }
+  else {
+    let colors = COLORS.slice(0, 8);
+    cards = colors.concat(colors);
+  }
+
+  console.log(cards)
+  return cards;
 }
