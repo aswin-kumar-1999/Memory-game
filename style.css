@@ -23,17 +23,12 @@ body {
   border: red solid 5px;
   width: 150px;
   height: 200px;
+  
   margin: 10px;
   border-radius: 1rem;
-  display: inline-block;
+  display: block;
   transition: 300ms ease-in-out;
 }
-
-/* #game>div{
-  background-image: url('./gifs/div.gif');
-  background-size: cover;
-  background-position-x:-6rem; 
-} */
 
 h1 {
   text-align: center;
@@ -47,7 +42,7 @@ h1 {
 .backDrop {
   position: absolute;
   width: 100vw;
-  min-height: 100vh;
+  height: 100vh;
   z-index: 1;
   background-color: rgba(128, 128, 128, 0.466);
   display: flex;
@@ -96,7 +91,7 @@ button:hover {
   animation-duration: 4s;
 }
 
-.level>select{
+.level>select {
   cursor: pointer;
   border: none;
   background-color: #04AA6D;
@@ -106,10 +101,12 @@ button:hover {
   border-radius: 20px;
   margin-bottom: 2rem;
 }
+
 /* 
 option{
   background-color: #04AA6D;
 } */
+
 @keyframes bounce {
   0%, 20%, 50%, 80%, 100% {
     transform: translateY(0);
@@ -122,3 +119,9 @@ option{
   }
 }
 
+@media screen and (max-width:768px) {
+  #game div {
+    width: 15vw;
+    height: 15vw;
+  }
+}
