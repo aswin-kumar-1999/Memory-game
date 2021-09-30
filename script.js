@@ -4,16 +4,31 @@ let clkCards = [];
 let moves = 0;
 let score = 0;
 
-const COLORS = [
-  "red",
-  "green",
-  "orange",
-  "purple",
-  "blue",
-  "black",
-  "white",
-  "grey"
-];
+// const COLORS = [
+//   "red",
+//   "green",
+//   "orange",
+//   "purple",
+//   "blue",
+//   "black",
+//   "white",
+//   "grey"
+// ];
+
+const COLORS=[
+  './gifs/1.gif',
+  './gifs/2.gif',
+  './gifs/3.gif',
+  './gifs/4.gif',
+  './gifs/5.gif',
+  './gifs/6.gif',
+  './gifs/7.gif',
+  './gifs/8.gif',
+  './gifs/9.gif',
+  './gifs/10.gif',
+  './gifs/11.gif',
+  './gifs/12.gif'
+]
 
 // here is a helper function to shuffle an array
 // it returns the same array with values shuffled
@@ -65,28 +80,28 @@ function createDivsForColors(colorArray) {
 
 }
 
+let cardsLength;
+
 // TODO: Implement this function!
 
 function handleCardClick(event) {
-
+  console.log("Cards length",cardsLength);
   clkCards.push(event.target);
 
   const numOfCards = clkCards.length;
+
   if (numOfCards <= 2) {
 
     const eventId = clkCards[numOfCards - 1].getAttribute("id");
     const eventClass = clkCards[numOfCards - 1].getAttribute("class");
-    document.getElementById(eventId).style.backgroundColor = eventClass;
     moves++;
+   
+    document.getElementById(eventId).style.backgroundImage=`url(${eventClass})`;
     document.querySelector(".score").innerHTML = `<h3>MOVE: ${moves}</h3><br/><h3>SCORE: ${score}</h3>`;
-
-    // console.log(eventId)
     event.target.classList.toggle("flip");
-
   }
 
   if (numOfCards == 2) {
-    // console.log(clkCards);
 
     const isSameCard = clkCards[0].getAttribute("id") === clkCards[1].getAttribute("id");
 
@@ -95,10 +110,9 @@ function handleCardClick(event) {
       const card1 = clkCards[0].getAttribute("class");
       const card2 = clkCards[1].getAttribute("class");
 
-      console.log("match", moves);
-
       if (card1 === card2) {
         score++;
+
         document.querySelector(".score").innerHTML = `<h3>MOVE: ${moves}</h3><br/><h3>SCORE: ${score}</h3>`;
 
         clkCards[0].removeEventListener("click", handleCardClick);
@@ -110,14 +124,15 @@ function handleCardClick(event) {
           clkCards[0].classList.toggle("flip");
           clkCards[1].classList.toggle("flip");
 
-          let eventId = clkCards[0].getAttribute("id");
-          document.getElementById(eventId).style.backgroundColor = "transparent";
-          console.log(clkCards)
-          eventId = clkCards[1].getAttribute("id");
-          document.getElementById(eventId).style.backgroundColor = "transparent";
-          console.log(clkCards)
+          const card1 = clkCards[0].getAttribute("id");
+          document.getElementById(card1).style.backgroundImage = "none";
+          document.getElementById(card1).style.backgroundColor = "transparent";
+  
+          const card2 = clkCards[1].getAttribute("id");
+          document.getElementById(card2).style.backgroundImage = "none";
+          document.getElementById(card2).style.backgroundColor = "transparent";
+      
           clkCards = [];
-          console.log("done")
         }, 1000)
       }
     }
@@ -128,7 +143,7 @@ function handleCardClick(event) {
 
   }
 
-  if (score === COLORS.length / 2) {
+  if (score ===cardsLength / 2) {
     document.querySelector(".backDrop").style.display = "flex";
     checkScore(moves);
   }
@@ -137,16 +152,19 @@ function handleCardClick(event) {
 
 function startGame() {
   var level = document.getElementsByTagName('select')[0].value;
-  console.log(level)
+
   document.querySelector(".backDrop").style.display = "none";
+
   const container = document.querySelector('#game');
   removeAllChildNodes(container);
+
   moves = 0;
   score = 0;
+
   const cards = selectLevel(level);
-  console.log(cards);
   let shuffledColors = shuffle(cards);
   createDivsForColors(shuffledColors);
+
   document.querySelector("#game").style.left = "0";
 }
 
@@ -159,9 +177,11 @@ function removeAllChildNodes(parent) {
 
 function checkScore(moves) {
   const bestScore = localStorage.getItem("score");
+
   if (bestScore > moves) {
     localStorage.setItem("score", moves);
   }
+  
   document.querySelector("h1").innerText = "Congratulations";
   document.querySelector(".finalScore").innerHTML = `Best score: ${localStorage.getItem("score")}<br/>Your score: ${moves}`;
   document.querySelector("#main-btn").innerText = "RESET";
@@ -169,11 +189,10 @@ function checkScore(moves) {
 
 function selectLevel(level) {
   let cards;
-  console.log(level)
   if (level == 1) {
     let colors = COLORS.slice(0, 4);
-    console.log(colors)
     cards = colors.concat(colors);
+    cardsLength=cards.length;
   }
   else if (level == 2) {
     let colors = COLORS.slice(0, 6);
