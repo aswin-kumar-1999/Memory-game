@@ -97,6 +97,8 @@ function handleCardClick(event) {
     moves++;
    
     document.getElementById(eventId).style.backgroundImage=`url(${eventClass})`;
+    document.getElementById(eventId).style.backgroundSize="cover";
+
     document.querySelector(".score").innerHTML = `<h3>MOVE: ${moves}</h3><br/><h3>SCORE: ${score}</h3>`;
     event.target.classList.toggle("flip");
   }
@@ -181,7 +183,7 @@ function checkScore(moves) {
   if (bestScore > moves) {
     localStorage.setItem("score", moves);
   }
-  
+
   document.querySelector("h1").innerText = "Congratulations";
   document.querySelector(".finalScore").innerHTML = `Best score: ${localStorage.getItem("score")}<br/>Your score: ${moves}`;
   document.querySelector("#main-btn").innerText = "RESET";
