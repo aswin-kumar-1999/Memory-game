@@ -26,7 +26,7 @@ body {
   height: 200px;
   /* width: 22vw;
   height: 18vw; */
-  /* background-image: url('./img/—Pngtree—vector\ playing\ cards_2189662.png'); */
+  background-image: url('./img/joker.png');
   margin: 10px;
   border-radius: 1rem;
   display: inline-block;
@@ -79,6 +79,7 @@ button {
   font-size: 16px;
   padding: 10px 30px;
   border-radius: 20px;
+  margin: 0px 5px
 }
 
 button:hover {
@@ -86,11 +87,20 @@ button:hover {
   color: rgb(2, 0, 0);
   font-weight: 700;
 }
-
+#main-btn2{
+  display: none;
+}
 .scoreCard {
   margin: 2rem 3rem;
   animation-name: bounce;
   animation-duration: 4s;
+}
+
+.scoreCard>div {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.2rem;
+  font-weight: 600;
 }
 
 select {

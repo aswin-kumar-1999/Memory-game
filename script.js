@@ -1,5 +1,5 @@
 const gameContainer = document.getElementById("game");
-localStorage.setItem("score", Infinity);
+localStorage.setItem("score", 0);
 let clkCards = [];
 let moves = 0;
 let score = 0;
@@ -66,6 +66,7 @@ function createDivsForColors(colorArray) {
     // give it a class attribute for the value we are looping over
     newDiv.classList.add(colorArray[color]);
     newDiv.setAttribute("id", color);
+    newDiv.style.backgroundSize = "cover";
     // call a function handleCardClick when a div is clicked on
     newDiv.addEventListener("click", handleCardClick);
 
@@ -85,6 +86,7 @@ function createDivsForColors(colorArray) {
 // TODO: Implement this function!
 
 function handleCardClick(event) {
+
   console.log("Cards length", cardsLength);
   clkCards.push(event.target);
 
@@ -100,6 +102,7 @@ function handleCardClick(event) {
     document.getElementById(eventId).style.backgroundSize = "cover";
 
     document.querySelector(".score").innerHTML = `<h3>MOVE: ${moves}</h3><br/><h3>SCORE: ${score}</h3>`;
+
     event.target.classList.toggle("flip");
   }
 
@@ -127,12 +130,10 @@ function handleCardClick(event) {
           clkCards[1].classList.toggle("flip");
 
           const card1 = clkCards[0].getAttribute("id");
-          document.getElementById(card1).style.backgroundImage = "none";
-          document.getElementById(card1).style.backgroundColor = "transparent";
+          document.getElementById(card1).style.backgroundImage = " url('./img/joker.png')";
 
           const card2 = clkCards[1].getAttribute("id");
-          document.getElementById(card2).style.backgroundImage = "none";
-          document.getElementById(card2).style.backgroundColor = "transparent";
+          document.getElementById(card2).style.backgroundImage = " url('./img/joker.png')";
 
           clkCards = [];
         }, 1000)
@@ -168,6 +169,7 @@ function startGame() {
   let shuffledColors = shuffle(cards);
   createDivsForColors(shuffledColors);
 
+  document.querySelector(".bestScore").innerHTML = `<h2>BEST SCORE: ${localStorage.getItem("score")}`;
   document.querySelector("#game").style.left = "0";
 }
 
@@ -180,13 +182,18 @@ function removeAllChildNodes(parent) {
 function checkScore(moves) {
   const bestScore = localStorage.getItem("score");
 
-  if (bestScore > moves) {
+  if (bestScore > moves || bestScore == "0") {
     localStorage.setItem("score", moves);
   }
 
   document.querySelector("h1").innerText = "Congratulations";
   document.querySelector(".finalScore").innerHTML = `Best score: ${localStorage.getItem("score")}<br/>Your score: ${moves}`;
-  document.querySelector("#main-btn").innerText = "RESET";
+  document.querySelector("select").style.display = "none";
+
+  document.querySelector("#main-btn2").style.display = "block"
+  document.querySelector("#main-btn2").innerText="LEVEL"
+  document.querySelector("#main-btn2").setAttribute("onclick","location.reload()")
+  document.querySelector("#main-btn").innerText = "RESTART";
 }
 
 function selectLevel(level) {
@@ -208,4 +215,19 @@ function selectLevel(level) {
 
   console.log(cards)
   return cards;
+}
+
+function reset() {
+  document.querySelector(".backDrop").style.display = "flex";
+  document.querySelector("h1").innerText = "RESET";
+  document.querySelector(".finalScore").innerHTML = `Do you want to reset<br><br>`;
+  document.querySelector("select").style.display = "none";
+  document.querySelector("#main-btn2").style.display = "block"
+  document.querySelector("#main-btn2").innerText="CANCEL"
+  document.querySelector("#main-btn2").setAttribute("onclick","cancel()")
+  document.querySelector("#main-btn").innerText = "RESET";
+}
+
+function cancel(){
+  document.querySelector(".backDrop").style.display = "none";
 }
