@@ -132,4 +132,12 @@ select {
     width: 15vw;
     height: 18vw;
   }
+  .scoreCard>div{
+    font-size: 1vw;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+  h2, h3{
+    font-size: medium;
+  }
 }
