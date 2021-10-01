@@ -1,5 +1,5 @@
 const gameContainer = document.getElementById("game");
-localStorage.setItem("score", 0);
+// localStorage.setItem("score", 0);
 let clkCards = [];
 let moves = 0;
 let score = 0;
@@ -169,7 +169,8 @@ function startGame() {
   let shuffledColors = shuffle(cards);
   createDivsForColors(shuffledColors);
 
-  document.querySelector(".bestScore").innerHTML = `<h2>BEST SCORE: ${localStorage.getItem("score")}`;
+  const bestscore=localStorage.getItem("score") ?? 0;
+  document.querySelector(".bestScore").innerHTML = `<h2>BEST SCORE: ${bestscore}`;
   document.querySelector("#game").style.left = "0";
 }
 
