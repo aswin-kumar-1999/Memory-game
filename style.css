@@ -135,7 +135,7 @@ select {
   .scoreCard>div{
     font-size: 1vw;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: space-between;
   }
   h2, h3{
     font-size: medium;
