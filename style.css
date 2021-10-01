@@ -137,6 +137,9 @@ select {
     flex-wrap: wrap;
     justify-content: space-between;
   }
+  .scoreCard{
+    margin: 0 10px;
+  }
   h2, h3{
     font-size: medium;
   }
