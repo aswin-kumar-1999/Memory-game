@@ -3,6 +3,7 @@ localStorage.setItem("score", Infinity);
 let clkCards = [];
 let moves = 0;
 let score = 0;
+let cardsLength;
 
 // const COLORS = [
 //   "red",
@@ -15,7 +16,7 @@ let score = 0;
 //   "grey"
 // ];
 
-const COLORS=[
+const COLORS = [
   './gifs/1.gif',
   './gifs/2.gif',
   './gifs/3.gif',
@@ -54,7 +55,6 @@ function shuffle(array) {
 }
 
 
-
 // this function loops over the array of colors
 // it creates a new div and gives it a class with the value of the color
 // it also adds an event listener for a click for each card
@@ -80,12 +80,12 @@ function createDivsForColors(colorArray) {
 
 }
 
-let cardsLength;
+
 
 // TODO: Implement this function!
 
 function handleCardClick(event) {
-  console.log("Cards length",cardsLength);
+  console.log("Cards length", cardsLength);
   clkCards.push(event.target);
 
   const numOfCards = clkCards.length;
@@ -95,9 +95,9 @@ function handleCardClick(event) {
     const eventId = clkCards[numOfCards - 1].getAttribute("id");
     const eventClass = clkCards[numOfCards - 1].getAttribute("class");
     moves++;
-   
-    document.getElementById(eventId).style.backgroundImage=`url(${eventClass})`;
-    document.getElementById(eventId).style.backgroundSize="cover";
+
+    document.getElementById(eventId).style.backgroundImage = `url(${eventClass})`;
+    document.getElementById(eventId).style.backgroundSize = "cover";
 
     document.querySelector(".score").innerHTML = `<h3>MOVE: ${moves}</h3><br/><h3>SCORE: ${score}</h3>`;
     event.target.classList.toggle("flip");
@@ -129,11 +129,11 @@ function handleCardClick(event) {
           const card1 = clkCards[0].getAttribute("id");
           document.getElementById(card1).style.backgroundImage = "none";
           document.getElementById(card1).style.backgroundColor = "transparent";
-  
+
           const card2 = clkCards[1].getAttribute("id");
           document.getElementById(card2).style.backgroundImage = "none";
           document.getElementById(card2).style.backgroundColor = "transparent";
-      
+
           clkCards = [];
         }, 1000)
       }
@@ -145,13 +145,14 @@ function handleCardClick(event) {
 
   }
 
-  if (score ===cardsLength / 2) {
+  if (score === cardsLength / 2) {
     document.querySelector(".backDrop").style.display = "flex";
     checkScore(moves);
   }
 
 }
 
+// when the DOM loads
 function startGame() {
   var level = document.getElementsByTagName('select')[0].value;
 
@@ -170,7 +171,6 @@ function startGame() {
   document.querySelector("#game").style.left = "0";
 }
 
-// when the DOM loads
 function removeAllChildNodes(parent) {
   while (parent.firstChild) {
     parent.removeChild(parent.firstChild);
@@ -194,7 +194,7 @@ function selectLevel(level) {
   if (level == 1) {
     let colors = COLORS.slice(0, 4);
     cards = colors.concat(colors);
-    cardsLength=cards.length;
+    cardsLength = cards.length;
   }
   else if (level == 2) {
     let colors = COLORS.slice(0, 6);

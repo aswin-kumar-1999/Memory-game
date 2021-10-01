@@ -24,9 +24,12 @@ body {
   border-image: linear-gradient(to right, hsl(0, 100%, 50%), hsl(192, 100%, 50%)) 1;
   width: 150px;
   height: 200px;
+  /* width: 22vw;
+  height: 18vw; */
+  /* background-image: url('./img/—Pngtree—vector\ playing\ cards_2189662.png'); */
   margin: 10px;
   border-radius: 1rem;
-  display: block;
+  display: inline-block;
   transition: 300ms ease-in-out;
 }
 
@@ -48,7 +51,6 @@ h1 {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: 'Stick No Bills', sans-serif;
 }
 
 .backDrop>div {
@@ -91,21 +93,17 @@ button:hover {
   animation-duration: 4s;
 }
 
-.level>select {
+select {
   cursor: pointer;
   border: none;
   background-color: #04AA6D;
-  color: white;
-  font-size: 16px;
-  padding: .5rem 2rem;
+  color: rgb(0, 0, 0);
+  font-size: 20px;
+  /* padding: .5rem 2rem;  */
+  text-align: center;
   border-radius: 20px;
   margin-bottom: 2rem;
 }
-
-/* 
-option{
-  background-color: #04AA6D;
-} */
 
 @keyframes bounce {
   0%, 20%, 50%, 80%, 100% {
