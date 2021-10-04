@@ -26,7 +26,8 @@ body {
   height: 200px;
   /* width: 22vw;
   height: 18vw; */
-  background-image: url('./img/joker.png');
+  background-image: url('./img/joker1.jpg');
+  background-position: center;
   margin: 10px;
   border-radius: 1rem;
   display: inline-block;

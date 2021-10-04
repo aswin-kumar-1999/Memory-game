@@ -130,10 +130,10 @@ function handleCardClick(event) {
           clkCards[1].classList.toggle("flip");
 
           const card1 = clkCards[0].getAttribute("id");
-          document.getElementById(card1).style.backgroundImage = " url('./img/joker.png')";
+          document.getElementById(card1).style.backgroundImage = " url('./img/joker1.jpg')";
 
           const card2 = clkCards[1].getAttribute("id");
-          document.getElementById(card2).style.backgroundImage = " url('./img/joker.png')";
+          document.getElementById(card2).style.backgroundImage = " url('./img/joker1.jpg')";
 
           clkCards = [];
         }, 1000)
